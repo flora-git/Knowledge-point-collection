@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="妇幼,保健院,妇幼保健院,迁安市妇幼,迁安市妇幼保健院">
+    <meta name="description" content="迁安市妇幼保健院">
+    <meta name="author" content="深蓝科技">
+    <meta name="robots" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/nav.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="top">
+            <div class="top-wel">
+                <p class="top-wel-left">
+                    <span>欢迎来到迁安市妇幼保健院官方网站！&nbsp;&nbsp;</span>
+                    <em id="time"></em>
+                    <script>
+                        var t = new Date();
+                        var year = t.getFullYear() + '年';
+                        var month = t.getMonth() + 1 + '月';
+                        var date = t.getDate() + '日';
+                        var hour = t.getHours() + ':';
+                        var min = t.getMinutes() + ':';
+                        var second = t.getSeconds() + '';
+                        
+                        var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+                        var index = t.getDay();
+                        var weekday = week[index];
+                        $("#time").text( year + "" + month + date + ' ' + hour + min + second + ' ' + weekday)
+                    </script>
+                </p>
+                <p class="top-wel-right">
+                    <a href="#">官方微信</a>&nbsp;|&nbsp;<a href="#">移动端</a>
+                </p>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="header-main-body">
+                <img src="images/logo.png" alt="" class="logo top-wel-left">
+                <img src="images/top_font.png" alt="" class="top-wel-left">
+                <img src="images/top_phone.png" alt="" class="top-wel-right">
+            </div>
+        </div>
+        <div class="nav">
+            <div class="nav-main">
+                <ul class="nav-all clearfix">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">妇幼概况</a>
+                        <ul class="nav-list">
+                            <li><a href="#">妇幼简介</a></li>
+                            <li><a href="#">妇幼文化</a></li>
+                            <li><a href="#">妇幼风貌</a></li>
+                            <li><a href="#">领导团队</a></li>
+                            <li><a href="#">机构设置</a></li>
+                            <li><a href="#">资质荣誉</a></li>
+                            <li><a href="#">先进设备</a></li>
+                            <li><a href="#">优秀员工</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">学科体系建设</a>
+                        <ul class="nav-list">
+                            <li><a href="#">孕产保健部</a></li>
+                            <li><a href="#">妇女保健部</a></li>
+                            <li><a href="#">儿童保健部</a></li>
+                            <li><a href="#">计划生育服务部</a></li>
+                            <li><a href="#">配套科室</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">医师风采</a>
+                        <ul class="nav-list">
+                            <li><a href="#">专家介绍</a></li>
+                            <li><a href="#">学科带头人</a></li>
+                            <li><a href="#">优秀医师</a></li>
+                            <li><a href="#">外聘专家</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">新闻动态</a>
+                        <ul class="nav-list">
+                            <li><a href="#">妇幼新闻</a></li>
+                            <li><a href="#">妇幼公告</a></li>
+                            <li><a href="#">行业动态</a></li>
+                            <li><a href="#">文化活动</a></li>
+                            <li><a href="#">活动风采</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">特色服务</a></li>
+                    <li><a href="#">就医指南</a></li>
+                    <li><a href="#">科研教学</a></li>
+                    <li><a href="#">院务公开</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-pic">
+            <a href="#",target="_blank"><img src="images/banner01.png" alt="" style="width:1200px; height:390px"></a>
+            <a href="#",target="_blank"><img src="images/banner02.jpg" alt="" style="width:1200px; height:390px"></a>
+            <a href="#",target="_blank"><img src="images/banner03.jpg" alt="" style="width:1200px; height:390px"></a>
+            <a href="#",target="_blank"><img src="images/banner04.jpg" alt="" style="width:1200px; height:390px"></a>
+            <a href="#",target="_blank"><img src="images/banner02.jpg" alt="" style="width:1200px; height:390px"></a>
+            <div class="num">
+                <span class="normal">5</span>
+                <span class="normal">4</span>
+                <span class="normal">3</span>
+                <span class="normal">2</span>
+                <span class="cur">1</span>
+            </div>
+        </div>
+    </div>
+    <div class="search">
+        <div class="search-time">
+            <p id="time"></p>
+            <p id="weather"></p>
+        </div>
+        <div class="search-main">
+            <span>站内搜索</span>
+            <input class="search-input"><!--
+            --><a href="#"><img src="images/sch_magn.png"></a>
+        </div>
+    </div>
+    <div class="page">
+        <div class="smallFocus">
+            <a href="#",target="_blank" style="display:block;visibility:visible"><img src="images/school.png" alt="" style="width:387px; height:262px"></a>
+            <a href="#",target="_blank" style="display:none;visibility:hidden"><img src="images/school_hot_01.png" alt="" style="width:387px; height:262px"></a>
+            <a href="#",target="_blank" style="display:none;visibility:hidden"><img src="images/school_02.png" alt="" style="width:387px; height:262px"></a>
+            <div class="digit clearfix">
+                <span class="norml">3</span>
+                <span class="norml">2</span>
+                <span class="current">1</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

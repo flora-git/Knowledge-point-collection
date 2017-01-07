@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>左滑动轮播图哈哈我自己写的</title>
+    <script src="js/jquery.min.js"></script>
+    <!--<script src="js/nav.js"></script>-->
+</head>
+<style>
+    .banner {
+        width: 1200px;
+        height: 390px;
+        margin: 8px auto;
+    }
+    .banner-pic {
+        width: 1200px;
+        height: 390px;
+        position: relative;
+        overflow: hidden
+    }
+    .banner-pic>a {
+        display: block;
+        position: absolute;
+        left: 1200px;
+        top: 0
+    }
+    .banner-pic>a.cur {
+        left: 0
+    }
+    .banner-pic .num {
+        width: 150px;
+        height: 31px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background: url(../test/images/bg_num.png) no-repeat top left;
+        padding-top: 5px;
+    }
+    .banner-pic .num span {
+        float: left;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .banner-pic .num span.cur {
+        background: #ff4567;
+        color: #fff
+    }
+    .banner-pic .num span.normal {
+        background: #fff;
+        color: #ff4567;
+    }
+</style>
+
+<body>
+    <div class="banner">
+        <div class="banner-pic">
+            <a href="#" ,target="_blank" class="cur">
+                <img src="images/banner01.png" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner02.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner03.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner04.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner02.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <div class="num">
+                <span class="cur">1</span>
+                <span class="normal">2</span>
+                <span class="normal">3</span>
+                <span class="normal">4</span>
+                <span class="normal">5</span>
+            </div>
+        </div>
+    </div>
+    <script>
+            var index = 0;
+            var toIndex;
+            /*var arr_a = $('.banner-pic>a');*/
+            function autoSlideLeft() {
+                $('.banner-pic>a').eq(index).removeClass("cur").animate({
+                    display: "block",
+                    position: "absolute",
+                    left: "-1200px",
+                    top: "0"
+                }).siblings('a').css({
+                    "left": "1200px"
+                })
+                index + 1 === $('.banner-pic>a').length ? index = 0 : index = index + 1
+                $('.banner-pic>.num>span').eq(index).attr("class","cur").siblings('span').attr("class","normal")
+                toIndex = index ;
+                $('.banner-pic>a').eq(index).addClass('cur').animate({
+                    display: "block",
+                    position: "absolute",
+                    left: "0",
+                    top: "0"
+                }).siblings('a').css({
+                    "left": "1200px"
+                })
+            }
+            var set = setInterval(autoSlideLeft, 2000)
+            /*for (var x in arr_a) {
+                if (arr_a[x].className == 'cur') {
+                    index = parseInt(x,10);
+                }
+            }*/
+        //$('.banner-pic>a').on("mouseover",function() 这里如果是$('.banner-pic>a'),鼠标hover到$('.banner-pic>.num>span') 的时候，自动切换会一直执行，因为$('.banner-pic>.num>span')会盖住$('.banner-pic>a')，但是却盖不住$('.banner-pic')，因为$('.banner-pic>.num>span')和$('.banner-pic>a') 都在$('.banner-pic')之内
+        $('.banner-pic').on("mouseover",function(){
+            clearInterval(set)
+        }).on("mouseleave",function(){
+            set = setInterval(autoSlideLeft, 2000)
+        })
+            $('.banner-pic>.num>span').on("mouseover click", function () {
+                toIndex = $(this).index()
+                $(this).attr("class","cur").siblings('span').attr("class","normal")
+                if (index != $(this).index()) {
+                    $('.banner-pic>a').eq(index).animate({
+                        display: "block",
+                        position: "absolute",
+                        left: "-1200px",
+                        top: "0"
+                    }).siblings('a').css({
+                        "left": "1200px"
+                    })
+                    $('.banner-pic>a').eq(toIndex).animate({
+                        display: "block",
+                        position: "absolute",
+                        left: "0",
+                        top: "0"
+                    }).siblings('a').css({
+                        "left": "1200px"
+                    })
+                    index = toIndex;
+                }
+            })
+    </script>
+</body>
+
+</html>

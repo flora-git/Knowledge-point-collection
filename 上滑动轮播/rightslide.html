@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上滑动轮播图哈哈我自己写的</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<style>
+    .banner {
+        width: 1200px;
+        height: 390px;
+        margin: 8px auto;
+    }
+    .banner-pic {
+        width: 1200px;
+        height: 390px;
+        position: relative;
+        overflow: hidden;
+    }
+    .banner-pic>a {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 390px;
+        /*默认在.banner-pic的下面*/
+    }
+    .banner-pic>a:nth-child(1) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*第一个在可见范围内*/
+    }
+    .banner-pic .num {
+        width: 150px;
+        height: 31px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background: url(../test/images/bg_num.png) no-repeat top left;
+        padding-top: 5px;
+    }
+    .banner-pic .num span {
+        float: left;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .banner-pic .num span.cur {
+        background: #ff4567;
+        color: #fff
+    }
+    .banner-pic .num span.normal {
+        background: #fff;
+        color: #ff4567;
+    }
+</style>
+
+<body>
+    <div class="banner">
+        <div class="banner-pic">
+            <a href="#" ,target="_blank">
+                <img src="images/banner01.png" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner02.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner03.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner04.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner05.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <div class="num">
+                <span class="cur">1</span>
+                <span class="normal">2</span>
+                <span class="normal">3</span>
+                <span class="normal">4</span>
+                <span class="normal">5</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var index = 0;
+        var toIndex;
+        function autoSlideUp() {
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "0",
+                top: "-390px"
+            }, "fast", "linear", function () { //当向上滑动完成后，复位到.banner-pic下面
+                $(this).css({
+                    "position": "absolute",
+                    "left": "0",
+                    "top": "390px"
+                })
+            })
+            index + 1 === $('.banner-pic a').length ? index = 0 : index += 1;
+            $('.banner-pic .num span').eq(index).attr('class', 'cur').siblings('span').attr('class', 'normal')
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "0",
+                top: "0"
+            }, "fast", "linear")
+        }
+        var set = setInterval(autoSlideUp, 2000)
+         $('.banner-pic').mouseover(function () {
+            clearInterval(set)
+        }).mouseleave(function () {
+            set = setInterval(autoSlideUp, 2000)
+        })
+
+         $('.banner-pic .num span').on("mouseenter click", function () {
+            toIndex = $(this).index()
+            if (toIndex != index) {
+                $(this).attr('class', 'cur').siblings('span').attr('class', 'normal')
+                $('.banner-pic a').eq(index).animate({
+                    position: "absolute",
+                    left: "0",
+                    top: "-390px"
+                }, "fast", "linear", function () { //当向上滑动完成后，复位到.banner-pic下面
+                    $(this).css({
+                        "position": "absolute",
+                        "left": "0",
+                        "top": "390px"
+                    })
+                })
+                $('.banner-pic a').eq(toIndex).animate({
+                    position: "absolute",
+                    left: "0",
+                    top: "0"
+                }, "fast", "linear")
+                index = toIndex;
+            }
+        })
+    </script>
+</body>
+
+</html>

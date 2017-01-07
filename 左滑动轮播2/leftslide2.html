@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>左滑动轮播图哈哈我自己写的</title>
+    <script src="js/jquery.min.js"></script>
+    <!--<script src="js/nav.js"></script>-->
+</head>
+<style>
+    .banner {
+        width: 1200px;
+        height: 390px;
+        margin: 8px auto;
+    }
+    .banner-pic {
+        width: 1200px;
+        height: 390px;
+        position: relative;
+        overflow: hidden
+    }
+    .banner-pic>a {
+        display: block;
+        position: absolute;
+        left: 1200px;
+        top: 0
+        /*默认都在右边1200px位置 可视范围之外*/
+    }
+    .banner-pic>a:first-child {
+        left: 0
+        /*默认第一个可见*/
+    }
+    .banner-pic .num {
+        width: 150px;
+        height: 31px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background: url(../test/images/bg_num.png) no-repeat top left;
+        padding-top: 5px;
+    }
+    .banner-pic .num span {
+        float: left;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+        background: #fff;
+        color: #ff4567;
+    }
+    .banner-pic .num span.cur {
+        background: #ff4567;
+        color: #fff
+    }
+</style>
+
+<body>
+    <div class="banner">
+        <div class="banner-pic">
+            <a href="#" ,target="_blank">
+                <img src="images/banner01.png" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner02.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner03.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner04.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <a href="#" ,target="_blank">
+                <img src="images/banner02.jpg" alt="" style="width:1200px; height:390px">
+            </a>
+            <div class="num">
+                <span class="cur">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var index = 0 , toIndex , autoSlideLeft = function(){
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "-1200px",
+                top: "0"
+            },function(){$(this).css({"position": "absolute","left": "1200px","top": "0"})})
+            index + 1 === $('.banner-pic a').length ? index = 0 : index += 1 ;
+            $('.banner-pic .num span').eq(index).attr('class', 'cur').siblings('span').removeClass('cur')
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "0",
+                top: "0"
+            })
+        },set = setInterval(autoSlideLeft,2000)
+        $('.banner-pic').mouseenter(function(){
+            clearInterval(set)
+        }).mouseleave(function(){
+            set = setInterval(autoSlideLeft,2000)
+        })
+        $('.banner-pic .num span').on("click mouseenter", function () {
+            toIndex = $(this).index()
+            $(this).attr('class', 'cur').siblings('span').removeClass('cur')
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "-1200px",
+                top: "0"
+            },function(){
+                $(this).css({"position": "absolute","left": "1200px","top": "0"})
+            })
+            $('.banner-pic a').eq(toIndex).animate({
+                position: "absolute",
+                left: "0",
+                top: "0"
+            })
+            index = toIndex;
+        })
+    </script>
+    <!--<script>
+        var index = 0;//当前显示的
+        var toIndex;//将要显示的
+        function autoSlideLeft(){
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "-1200px",
+                top: "0"
+            },function(){$(this).css({"position": "absolute","left": "1200px","top": "0"})})
+            index + 1 === $('.banner-pic a').length ? index = 0 : index += 1 ;
+            $('.banner-pic .num span').eq(index).attr('class', 'cur').siblings('span').removeClass('cur')
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "0",
+                top: "0"
+            })
+        }
+        var set = setInterval(autoSlideLeft,2000)
+        $('.banner-pic').mouseenter(function(){
+            clearInterval(set)
+        }).mouseleave(function(){
+            set = setInterval(autoSlideLeft,2000)
+        })
+        $('.banner-pic .num span').on("click mouseenter", function () {
+            toIndex = $(this).index()
+            $(this).attr('class', 'cur').siblings('span').removeClass('cur')
+            $('.banner-pic a').eq(index).animate({
+                position: "absolute",
+                left: "-1200px",
+                top: "0"
+            },function(){
+                $(this).css({"position": "absolute","left": "1200px","top": "0"})
+            })
+            $('.banner-pic a').eq(toIndex).animate({
+                position: "absolute",
+                left: "0",
+                top: "0"
+            })
+            index = toIndex;
+        })
+    </script>-->
+</body>
+
+</html>
